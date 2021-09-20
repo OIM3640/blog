@@ -375,6 +375,8 @@ h1:hover .anchor-link, h2:hover .anchor-link, h3:hover .anchor-link, h4:hover .a
 
 .post-meta-title, .post-meta { margin-top: .25em !important; margin-bottom: .25em !important; font-size: 105%; }
 
+.post-meta { display: none; }
+
 .page-description { margin-top: .5rem !important; margin-bottom: .5rem !important; color: #585858; font-size: 115%; }
 
 .category-tags-icon { font-size: 75% !important; padding-left: 0.375em; opacity: 35%; }
