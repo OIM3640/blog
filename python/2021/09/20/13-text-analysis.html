@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Case - Text Analysis | OIM3640 - Problem Solving and Software Design</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Case - Text Analysis" />
+<meta name="author" content="Zhi Li" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learning text analysis using Python through a number of exercises." />
+<meta property="og:description" content="Learning text analysis using Python through a number of exercises." />
+<link rel="canonical" href="https://oim3640.github.io/blog/python/2021/09/20/13-text-analysis.html" />
+<meta property="og:url" content="https://oim3640.github.io/blog/python/2021/09/20/13-text-analysis.html" />
+<meta property="og:site_name" content="OIM3640 - Problem Solving and Software Design" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-20T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-09-20T00:00:00-05:00","url":"https://oim3640.github.io/blog/python/2021/09/20/13-text-analysis.html","@type":"BlogPosting","headline":"Case - Text Analysis","dateModified":"2021-09-20T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oim3640.github.io/blog/python/2021/09/20/13-text-analysis.html"},"author":{"@type":"Person","name":"Zhi Li"},"description":"Learning text analysis using Python through a number of exercises.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://oim3640.github.io/blog/feed.xml" title="OIM3640 - Problem Solving and Software Design" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">OIM3640 - Problem Solving and Software Design</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">13. Case - Text Analysis</h1><p class="page-description">Learning text analysis using Python through a number of exercises.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-20T00:00:00-05:00" itemprop="datePublished">
+        Sep 20, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Zhi Li</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/OIM3640/blog/tree/master/_notebooks/2021-09-20-13-text-analysis.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/OIM3640/blog/master?filepath=_notebooks%2F2021-09-20-13-text-analysis.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/OIM3640/blog/blob/master/_notebooks/2021-09-20-13-text-analysis.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Word-Frequency">Word Frequency </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-01">Exercise 01 </a></li>
+<li class="toc-entry toc-h3"><a href="#Exercise-02">Exercise 02 </a></li>
+<li class="toc-entry toc-h3"><a href="#Exercise-03">Exercise 03 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Optional-parameters">Optional parameters </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-04">Exercise 04 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Random-words">Random words </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-05">Exercise 05 </a></li>
+<li class="toc-entry toc-h3"><a href="#Exercise-06">Exercise 06 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Markov-analysis">Markov analysis </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-07-(Optional)">Exercise 07 (Optional) </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-09-20-13-text-analysis.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Word-Frequency">
+<a class="anchor" href="#Word-Frequency" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word Frequency<a class="anchor-link" href="#Word-Frequency"> </a>
+</h2>
+<p>As usual, you should at least attempt the exercises before you read the following solutions.</p>
+<h3 id="Exercise-01">
+<a class="anchor" href="#Exercise-01" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 01</em></strong><a class="anchor-link" href="#Exercise-01"> </a>
+</h3>
+<p>Modify function <code>process_file</code> to read a file, break each line into words, strip whitespace and punctuation from the words, and convert them to lowercase.</p>
+<p>Hint: The <code>string</code> module provides a string named <code>whitespace</code>, which contains space, tab, newline, etc., and <code>punctuation</code> which contains the punctuation characters. Let’s see if we can make Python swear:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Also, you might consider using the string methods <code>strip</code>, <code>replace</code> and <code>translate</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-02">
+<a class="anchor" href="#Exercise-02" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 02</em></strong><a class="anchor-link" href="#Exercise-02"> </a>
+</h3>
+<p>Go to Project Gutenberg (<a href="http://gutenberg.org">http://gutenberg.org</a>) and download your favorite out-of-copyright book in plain text format.</p>
+<p>Modify your program from the previous exercise to read the book you downloaded, skip over the header information at the beginning of the file, and process the rest of the words as before. (<code>skip_gutenberg_header</code>)</p>
+<p>Then modify <code>total_words</code> to count the total number of words in the book, and the number of times each word is used.</p>
+<p>Then modify <code>different_words</code> to print the number of different words used in the book. Compare different books by different authors, written in different eras. Which author uses the most extensive vocabulary?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-03">
+<a class="anchor" href="#Exercise-03" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 03</em></strong><a class="anchor-link" href="#Exercise-03"> </a>
+</h3>
+<p>Modify <code>most_common</code> and <code>print_most_common</code> to print the 20 most frequently used words in the book.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Optional-parameters">
+<a class="anchor" href="#Optional-parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional parameters<a class="anchor-link" href="#Optional-parameters"> </a>
+</h2>
+<p>We have seen built-in functions and methods that take optional arguments. It is possible to write programmer-defined functions with optional parameters, too. For example, here is a function that prints the most common words in a histogram</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_most_common</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The first parameter is required; the second is optional. The default value of <code>num</code> is 10.</p>
+<p>If you only provide one argument:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">print_most_common</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>num</code> gets the default value. If you provide two arguments:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">print_most_common</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>num</code> gets the value of the argument instead. In other words, the optional argument overrides the default value.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-04">
+<a class="anchor" href="#Exercise-04" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 04</em></strong><a class="anchor-link" href="#Exercise-04"> </a>
+</h3>
+<p>Modify <code>subtract</code> that reads a word list (you have done this before!) and then prints all the words in the book that are not in the word list. How many of them are typos? How many of them are common words that should be in the word list, and how many of them are really obscure?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Random-words">
+<a class="anchor" href="#Random-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Random words<a class="anchor-link" href="#Random-words"> </a>
+</h2>
+<h3 id="Exercise-05">
+<a class="anchor" href="#Exercise-05" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 05</em></strong><a class="anchor-link" href="#Exercise-05"> </a>
+</h3>
+<p>Write a function <code>random_word</code> that takes a histogram as defined in Dictionaries session and returns a random value from the histogram, chosen with probability in proportion to frequency. For example, for this histogram:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">histogram</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">]</span>
+<span class="n">hist</span> <span class="o">=</span> <span class="n">histogram</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>your function should return <code>'a'</code> with probability 2/3 and <code>'b'</code> with probability 1/3.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To choose a random word from the histogram, the simplest algorithm is to build a list with multiple copies of each word, according to the observed frequency, and then choose from the list:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">random_word</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">h</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">word</span><span class="p">]</span> <span class="o">*</span> <span class="n">freq</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The expression <code>[word] * freq</code> creates a list with <code>freq</code> copies of the string <code>word</code>. The extend method is similar to append except that the argument is a sequence.</p>
+<p>This algorithm works, but it is not very efficient; each time you choose a random word, it rebuilds the list, which is as big as the original book. An obvious improvement is to build the list once and then make multiple selections, but the list is still big.</p>
+<p>An alternative is:</p>
+<ol>
+<li>Use keys to get a list of the words in the book.</li>
+<li>Build a list that contains the cumulative sum of the word frequencies. The last item in this list is the total number of words in the book, <code>n</code>.</li>
+<li>Choose a random number from <code>1</code> to <code>n</code>. Use a bisection search to find the index where the random number would be inserted in the cumulative sum.</li>
+<li>Use the index to find the corresponding word in the word list.</li>
+</ol>
+<h3 id="Exercise-06">
+<a class="anchor" href="#Exercise-06" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 06</em></strong><a class="anchor-link" href="#Exercise-06"> </a>
+</h3>
+<p>Rewrite <code>random_word</code> that uses this algorithm to choose a random word from the book.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Markov-analysis">
+<a class="anchor" href="#Markov-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Markov analysis<a class="anchor-link" href="#Markov-analysis"> </a>
+</h2>
+<p>If you choose words from the book at random, you can get a sense of the vocabulary, but you probably won’t get a sentence:</p>
+
+<pre><code>this the small regard harriet which knightley's it most things
+
+</code></pre>
+<p>A series of random words seldom makes sense because there is no relationship between successive words. For example, in a real sentence you would expect an article like “the” to be followed by an adjective or a noun, and probably not a verb or adverb.</p>
+<p>One way to measure these kinds of relationships is Markov analysis, which characterizes, for a given sequence of words, the probability of the words that might come next. For example, the song Eric, the Half a Bee begins:</p>
+
+<pre><code>Half a bee, philosophically,
+Must, ipso facto, half not be.
+But half the bee has got to be
+Vis a vis, its entity. D’you see?
+
+But can a bee be said to be
+Or not to be an entire bee
+When half the bee is not a bee
+Due to some ancient injury?
+
+</code></pre>
+<p>In this text, the phrase “half the” is always followed by the word “bee”, but the phrase “the bee” might be followed by either “has” or “is”.</p>
+<p>The result of Markov analysis is a mapping from each prefix (like “half the” and “the bee”) to all possible suffixes (like “has” and “is”).</p>
+<p>Given this mapping, you can generate a random text by starting with any prefix and choosing at random from the possible suffixes. Next, you can combine the end of the prefix and the new suffix to form the next prefix, and repeat.</p>
+<p>For example, if you start with the prefix “Half a”, then the next word has to be “bee”, because the prefix only appears once in the text. The next prefix is “a bee”, so the next suffix might be “philosophically”, “be” or “due”.</p>
+<p>In this example the length of the prefix is always two, but you can do Markov analysis with any prefix length.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-07-(Optional)">
+<a class="anchor" href="#Exercise-07-(Optional)" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 07</em></strong> (Optional)<a class="anchor-link" href="#Exercise-07-(Optional)"> </a>
+</h3>
+<p>Markov analysis:</p>
+<p>1. Write a program to read a text from a file and perform Markov analysis. The result should be a dictionary that maps from prefixes to a collection of possible suffixes. The collection might be a list, tuple, or dictionary; it is up to you to make an appropriate choice. You can test your program with prefix length two, but you should write the program in a way that makes it easy to try other lengths.</p>
+<p>2. Add a function to the previous program to generate random text based on the Markov analysis. Here is an example from Emma with prefix length 2:</p>
+
+<pre><code>    and the other day, of his cousins, their time passed till they reached the house. In the dining-room was large, for almost all its furniture, were examined and praised; and his wife, "I cannot pretend to be expected?" said he, "do not make him desperate." The tumult of joy was 
+
+</code></pre>
+<p>For this example, I left the punctuation attached to the words. The result is almost syntactically correct, but not quite. Semantically, it almost makes sense, but not quite.</p>
+<p>What happens if you increase the prefix length? Does the random text make more sense?</p>
+<p>3. Once your program is working, you might want to try a mash-up: if you combine text from two or more books, the random text you generate will blend the vocabulary and phrases from the sources in interesting ways.</p>
+<p>Read <em>markov.py</em> to understand the code.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="OIM3640/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/python/2021/09/20/13-text-analysis.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An blogging platform to host Jupyter notebooks used for this class.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
