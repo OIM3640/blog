@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>02 - Variables, Expressions and Statements | OIM3640</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="02 - Variables, Expressions and Statements" />
+<meta name="author" content="Zhi Li" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Just a quick introduction to some foundamental elements in programming." />
+<meta property="og:description" content="Just a quick introduction to some foundamental elements in programming." />
+<link rel="canonical" href="https://oim3640.github.io/blog/python/2021/09/20/02-variables-expressions-statements.html" />
+<meta property="og:url" content="https://oim3640.github.io/blog/python/2021/09/20/02-variables-expressions-statements.html" />
+<meta property="og:site_name" content="OIM3640" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-20T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-09-20T00:00:00-05:00","url":"https://oim3640.github.io/blog/python/2021/09/20/02-variables-expressions-statements.html","@type":"BlogPosting","headline":"02 - Variables, Expressions and Statements","dateModified":"2021-09-20T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oim3640.github.io/blog/python/2021/09/20/02-variables-expressions-statements.html"},"author":{"@type":"Person","name":"Zhi Li"},"description":"Just a quick introduction to some foundamental elements in programming.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://oim3640.github.io/blog/feed.xml" title="OIM3640" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">OIM3640</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">02 - Variables, Expressions and Statements</h1><p class="page-description">Just a quick introduction to some foundamental elements in programming.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-20T00:00:00-05:00" itemprop="datePublished">
+        Sep 20, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Zhi Li</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/OIM3640/blog/tree/master/_notebooks/2021-09-20-02-variables-expressions-statements.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/OIM3640/blog/master?filepath=_notebooks%2F2021-09-20-02-variables-expressions-statements.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/OIM3640/blog/blob/master/_notebooks/2021-09-20-02-variables-expressions-statements.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Variables,-Expressions-and-Statements">Variables, Expressions and Statements </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Input-and-Output">Input and Output </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Output">Output </a></li>
+<li class="toc-entry toc-h3"><a href="#Input">Input </a></li>
+<li class="toc-entry toc-h3"><a href="#Exercise-01">Exercise 01 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Assignment-statements">Assignment statements </a></li>
+<li class="toc-entry toc-h2"><a href="#Variable-names">Variable names </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Ilegal-names">Ilegal names </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Expressions-and-statements">Expressions and statements </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Dynamic-language">Dynamic language </a></li>
+<li class="toc-entry toc-h3"><a href="#What's-happening-in-RAM.">What&#39;s happening in RAM. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Order-of-operations">Order of operations </a></li>
+<li class="toc-entry toc-h2"><a href="#String-operations">String operations </a></li>
+<li class="toc-entry toc-h2"><a href="#String-Formating">String Formating </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#More-f-string-formatting">More f-string formatting </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#More-about-f-strings:">More about f-strings: </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Comments">Comments </a></li>
+<li class="toc-entry toc-h3"><a href="#Exercise-02">Exercise 02 </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-09-20-02-variables-expressions-statements.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Variables,-Expressions-and-Statements">
+<a class="anchor" href="#Variables,-Expressions-and-Statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variables, Expressions and Statements<a class="anchor-link" href="#Variables,-Expressions-and-Statements"> </a>
+</h1>
+<h2 id="Input-and-Output">
+<a class="anchor" href="#Input-and-Output" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input and Output<a class="anchor-link" href="#Input-and-Output"> </a>
+</h2>
+<p>The simplest way to input and output is to use the built-in functions <code>print()</code> and <code>input()</code>.</p>
+<h3 id="Output">
+<a class="anchor" href="#Output" aria-hidden="true"><span class="octicon octicon-link"></span></a>Output<a class="anchor-link" href="#Output"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Hello, World!'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Hey Jude'</span><span class="p">,</span> <span class="s1">'don</span><span class="se">\'</span><span class="s1">t make it bad'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">'The total number of overall medals in Tokyo 2020 is'</span><span class="p">,</span> <span class="mi">39</span> <span class="o">+</span> <span class="mi">41</span> <span class="o">+</span> <span class="mi">33</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'39 + 41 + 33 ='</span><span class="p">,</span> <span class="mi">39</span> <span class="o">+</span> <span class="mi">41</span> <span class="o">+</span> <span class="mi">33</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Input">
+<a class="anchor" href="#Input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input<a class="anchor-link" href="#Input"> </a>
+</h3>
+<p>Python provides a built-in function called <code>input</code> that stops the program and waits for the user to type something. When the user presses Return or Enter, the program resumes and <code>input</code> returns what the user typed as a string.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">name</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Question</strong>: What is a <strong>variable</strong>?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-01">
+<a class="anchor" href="#Exercise-01" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 01</em></strong><a class="anchor-link" href="#Exercise-01"> </a>
+</h3>
+<p>Modify <em>hello.py</em> to</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Hello, '</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then rewrite it to ask user to enter his/her name first.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Assignment-statements">
+<a class="anchor" href="#Assignment-statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assignment statements<a class="anchor-link" href="#Assignment-statements"> </a>
+</h2>
+<p>An assignment statement creates a new variable and gives it a value:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s1">'I did something cool today!'</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Variable-names">
+<a class="anchor" href="#Variable-names" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variable names<a class="anchor-link" href="#Variable-names"> </a>
+</h2>
+<ul>
+<li>anything meaningful</li>
+<li>any length</li>
+<li>can contain letters, numbers and underscore _</li>
+<li>not begin with number</li>
+<li>conventionally only lower case</li>
+</ul>
+<h3 id="Ilegal-names">
+<a class="anchor" href="#Ilegal-names" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ilegal names<a class="anchor-link" href="#Ilegal-names"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">76</span><span class="n">ers</span> <span class="o">=</span> <span class="s1">'Philadelphia 76ers'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more</span><span class="o">@</span> <span class="o">=</span> <span class="mi">10000</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="err">= '</span><span class="nc">Problem</span> <span class="n">Solving</span><span class="s1">'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Because <code>class</code> is one of Python's <strong>keywords</strong>.</p>
+<p>More <strong>reserved words</strong>, or keywords of Python:</p>
+<p><a href="https://docs.python.org/3/reference/lexical_analysis.html#keywords">https://docs.python.org/3/reference/lexical_analysis.html#keywords</a></p>
+<p><strong>DO NOT use them as variable names or file names.</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Expressions-and-statements">
+<a class="anchor" href="#Expressions-and-statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Expressions and statements<a class="anchor-link" href="#Expressions-and-statements"> </a>
+</h2>
+<p>An <strong>expression</strong> is a combination of values, variables, and operators. A value all by itself is considered an expression, and so is a variable.</p>
+<p>Examples of expressions:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">42</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">+</span> <span class="mi">100</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you type an expression at the prompt, the interpreter <strong>evaluates</strong> it, which means that it finds the value of the expression.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <strong>statement</strong> is a unit of code that <strong>has an effect</strong>, like creating a variable or displaying a value.</p>
+<p>Examples of statements:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you type a statement, the interpreter <strong>executes</strong> it, which means that it does whatever the statement says. In general, statements don’t have values.</p>
+<h3 id="Dynamic-language">
+<a class="anchor" href="#Dynamic-language" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamic language<a class="anchor-link" href="#Dynamic-language"> </a>
+</h3>
+<p>Variable could be declared again.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">123</span> <span class="c1"># a is an integer</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="s1">'ABC'</span> <span class="c1"># a becomes a string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Assignment <code>=</code> is not equation in mathematics! For example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1"># This does not make sense in mathematics, </span>
+<span class="c1"># but it is perfectly ok in Python.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="What's-happening-in-RAM.">
+<a class="anchor" href="#What's-happening-in-RAM." aria-hidden="true"><span class="octicon octicon-link"></span></a>What's happening in RAM.<a class="anchor-link" href="#What's-happening-in-RAM."> </a>
+</h3>
+<p>Example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">'ABC'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Two things happen:</p>
+<ol>
+<li>a string <code>'ABC'</code> is created in RAM</li>
+<li>a variable <code>a</code> is created in RAM. It is referencing to <code>'ABC'</code>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">'ABC'</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">a</span> <span class="o">=</span> <span class="s1">'XYZ'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Step by step:</p>
+<p><img src="/blog/images/copied_from_nb/nb_images/abc_01.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="/blog/images/copied_from_nb/nb_images/abc_02.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="/blog/images/copied_from_nb/nb_images/abc_03.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Order-of-operations">
+<a class="anchor" href="#Order-of-operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Order of operations<a class="anchor-link" href="#Order-of-operations"> </a>
+</h2>
+<p>For mathematical operators, Python follows mathematical convention.</p>
+<h2 id="String-operations">
+<a class="anchor" href="#String-operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>String operations<a class="anchor-link" href="#String-operations"> </a>
+</h2>
+<p>In general, you can’t perform mathematical operations on strings.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">'2'</span> <span class="o">-</span><span class="s1">'1'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">'EU'</span> <span class="o">-</span> <span class="s1">'Great Britain'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, <code>+</code> and <code>*</code> could be used carefully.</p>
+<p>The <code>+</code> operator performs string concatenation, which means it joins the strings by linking them end-to-end. For example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">first_name</span> <span class="o">=</span> <span class="s1">'John'</span>
+<span class="n">last_name</span> <span class="o">=</span> <span class="s1">'Lennon'</span>
+<span class="n">first_name</span> <span class="o">+</span> <span class="n">last_name</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>*</code> operator also works on strings; it performs repetition. For example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">'Naah, na na nanana naah, nanana naah, hey Jude. '</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="String-Formating">
+<a class="anchor" href="#String-Formating" aria-hidden="true"><span class="octicon octicon-link"></span></a>String Formating<a class="anchor-link" href="#String-Formating"> </a>
+</h2>
+<p>How do we output formated string? Let's see some examples:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">'world'</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">actor</span> <span class="o">=</span> <span class="s1">'Joaquin Phoenix'</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2020</span>
+<span class="n">movie</span> <span class="o">=</span> <span class="s1">'Joker'</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">actor</span><span class="si">}</span><span class="s1"> wins Best Actor for </span><span class="si">{</span><span class="n">movie</span><span class="si">}</span><span class="s1"> at Golden Globes </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="More-f-string-formatting">
+<a class="anchor" href="#More-f-string-formatting" aria-hidden="true"><span class="octicon octicon-link"></span></a>More f-string formatting<a class="anchor-link" href="#More-f-string-formatting"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1415926</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Pi equals </span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">.'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Pi equals </span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s1">8.5f</span><span class="si">}</span><span class="s1">.'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Pi equals </span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s1">8.2f</span><span class="si">}</span><span class="s1">.'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2021</span>
+
+<span class="c1"># binary</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s1">b</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+
+<span class="c1"># hexadecimal</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># octal</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">o</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># scientific</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="s1">'a'</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="s1">'ab'</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="s1">'abc'</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="s1">'abcd'</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">s1</span><span class="si">:</span><span class="s1">&gt;10</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">s2</span><span class="si">:</span><span class="s1">&gt;10</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">s3</span><span class="si">:</span><span class="s1">&gt;10</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">s4</span><span class="si">:</span><span class="s1">&gt;10</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="More-about-f-strings:">
+<a class="anchor" href="#More-about-f-strings:" aria-hidden="true"><span class="octicon octicon-link"></span></a>More about f-strings:<a class="anchor-link" href="#More-about-f-strings:"> </a>
+</h4>
+<p><a href="https://www.python.org/dev/peps/pep-0498/">https://www.python.org/dev/peps/pep-0498/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Comments">
+<a class="anchor" href="#Comments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comments<a class="anchor-link" href="#Comments"> </a>
+</h3>
+<p><strong>Question</strong>: Why do we need comments?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minute</span> <span class="o">=</span> <span class="mi">45</span> <span class="c1"># current time</span>
+
+<span class="c1"># compute the percentage of the hour that has elapsed</span>
+<span class="n">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">minute</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-02">
+<a class="anchor" href="#Exercise-02" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 02</em></strong><a class="anchor-link" href="#Exercise-02"> </a>
+</h3>
+<p>Create file <strong><em>calc_2.py</em></strong> to answer the following questions. Add comments when necessary.</p>
+<ol>
+<li>
+<p>The volume of a sphere with radius r is $$(4/3)\pi r^3.$$ What is the volume of a sphere with radius 5?</p>
+</li>
+<li>
+<p>Suppose the cover price of a book is <span>$</span>24.95, but bookstores get a 40% discount. Shipping costs \$3 for the first copy and 75 cents for each additional copy. What is the total wholesale cost for 60 copies?</p>
+</li>
+<li>
+<p>If I leave my house at 6:52 am and run 1 mile at an easy pace (8:15 per mile), then 3 miles at tempo (7:12 per mile) and 1 mile at easy pace again, what time do I get home for breakfast?</p>
+</li>
+<li>
+<p>If my average grade rises from 82 to 89. What is the percentage of the increase? Format the result as <code>xx.x%</code>. Keep one figure after decimal point.</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="OIM3640/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/python/2021/09/20/02-variables-expressions-statements.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
