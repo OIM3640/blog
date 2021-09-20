@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Classes and Functions | OIM3640 - Problem Solving and Software Design</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Classes and Functions" />
+<meta name="author" content="Zhi Li" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Object-Oriented Programming 2" />
+<meta property="og:description" content="Object-Oriented Programming 2" />
+<link rel="canonical" href="https://oim3640.github.io/blog/python/2021/09/20/16-oop-2.html" />
+<meta property="og:url" content="https://oim3640.github.io/blog/python/2021/09/20/16-oop-2.html" />
+<meta property="og:site_name" content="OIM3640 - Problem Solving and Software Design" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-20T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-09-20T00:00:00-05:00","url":"https://oim3640.github.io/blog/python/2021/09/20/16-oop-2.html","@type":"BlogPosting","headline":"Classes and Functions","dateModified":"2021-09-20T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oim3640.github.io/blog/python/2021/09/20/16-oop-2.html"},"author":{"@type":"Person","name":"Zhi Li"},"description":"Object-Oriented Programming 2","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://oim3640.github.io/blog/feed.xml" title="OIM3640 - Problem Solving and Software Design" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">OIM3640 - Problem Solving and Software Design</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">16. Classes and Functions</h1><p class="page-description">Object-Oriented Programming 2</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-20T00:00:00-05:00" itemprop="datePublished">
+        Sep 20, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Zhi Li</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/OIM3640/blog/tree/master/_notebooks/2021-09-20-16-oop-2.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/OIM3640/blog/master?filepath=_notebooks%2F2021-09-20-16-oop-2.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/OIM3640/blog/blob/master/_notebooks/2021-09-20-16-oop-2.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Time">Time </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-01">Exercise 01 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Prototyping-and-patching">Prototyping and patching </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-02">Exercise 02 </a></li>
+<li class="toc-entry toc-h3"><a href="#Modifier">Modifier </a></li>
+<li class="toc-entry toc-h3"><a href="#Exercise-03">Exercise 03 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Prototyping-versus-planning">Prototyping versus planning </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-4">Exercise 4 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Error-handling">Error handling </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-05">Exercise 05 </a></li>
+<li class="toc-entry toc-h3"><a href="#Exercise-06">Exercise 06 </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-09-20-16-oop-2.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we know how to create new types, the next step is to write functions that take programmer-defined objects as parameters and return them as results.</p>
+<h2 id="Time">
+<a class="anchor" href="#Time" aria-hidden="true"><span class="octicon octicon-link"></span></a>Time<a class="anchor-link" href="#Time"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Time</span><span class="p">:</span>
+    <span class="sd">"""Represents the time of day.</span>
+<span class="sd">       </span>
+<span class="sd">    attributes: hour, minute, second</span>
+<span class="sd">    """</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">hour</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">time</span><span class="o">.</span><span class="n">minute</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">time</span><span class="o">.</span><span class="n">second</span> <span class="o">=</span> <span class="mi">30</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-01">
+<a class="anchor" href="#Exercise-01" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 01</em></strong><a class="anchor-link" href="#Exercise-01"> </a>
+</h3>
+<ol>
+<li>write a function called <code>print_time</code> that takes a Time object and prints it in the form <code>hour:minute:second</code>. Hint: <code>'f{foo:02}'</code> prints an integer variable, <code>foo</code>, using at least two digits, including a leading zero if necessary.</li>
+<li>Write a boolean function called <code>is_after</code> that takes two Time objects, <code>t1</code> and <code>t2</code>, and returns <code>True</code> if <code>t1</code> follows <code>t2</code> chronologically and <code>False</code> otherwise. 
+ <strong>Challenge</strong>: don’t use an <code>if</code> statement.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Prototyping-and-patching">
+<a class="anchor" href="#Prototyping-and-patching" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prototyping and patching<a class="anchor-link" href="#Prototyping-and-patching"> </a>
+</h2>
+<p>In the next few sections, we’ll write two functions that add time values. They demonstrate two kinds of functions: pure functions and modifiers. They also demonstrate a development plan I’ll call <strong>prototype and patch</strong>, which is a way of tackling a complex problem by starting with a simple prototype and incrementally dealing with the complications.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">add_time</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="n">Time</span><span class="p">()</span>
+    <span class="nb">sum</span><span class="o">.</span><span class="n">hour</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">hour</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="n">hour</span>
+    <span class="nb">sum</span><span class="o">.</span><span class="n">minute</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">minute</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="n">minute</span>
+    <span class="nb">sum</span><span class="o">.</span><span class="n">second</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">second</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="n">second</span>
+    <span class="k">return</span> <span class="nb">sum</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There might be some problems:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">Time</span><span class="p">()</span>
+<span class="n">start</span><span class="o">.</span><span class="n">hour</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">start</span><span class="o">.</span><span class="n">minute</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="n">start</span><span class="o">.</span><span class="n">second</span> <span class="o">=</span>  <span class="mi">0</span>
+
+<span class="n">duration</span> <span class="o">=</span> <span class="n">Time</span><span class="p">()</span>
+<span class="n">duration</span><span class="o">.</span><span class="n">hour</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">duration</span><span class="o">.</span><span class="n">minute</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">duration</span><span class="o">.</span><span class="n">second</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">done</span> <span class="o">=</span> <span class="n">add_time</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+<span class="n">print_time</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-02">
+<a class="anchor" href="#Exercise-02" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 02</em></strong><a class="anchor-link" href="#Exercise-02"> </a>
+</h3>
+<p>Let's improve <code>add_time</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Modifier">
+<a class="anchor" href="#Modifier" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modifier<a class="anchor-link" href="#Modifier"> </a>
+</h3>
+<p>The above function is called a <strong>pure function</strong> because it does not modify any of the objects passed to it as arguments and it has no effect, like displaying a value or getting user input, other than returning a value.</p>
+<p>Sometimes it is useful for a function to modify the objects it gets as parameters. In that case, the changes are visible to the caller. Functions that work this way are called <strong>modifiers</strong>. For example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">second</span> <span class="o">+=</span> <span class="n">seconds</span>
+
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">second</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">second</span> <span class="o">-=</span> <span class="mi">60</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">minute</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">minute</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">minute</span> <span class="o">-=</span> <span class="mi">60</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">hour</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Question:</em> Is this function correct? What happens if seconds is much greater than sixty?</p>
+<p>Anything that can be done with <strong>modifiers</strong> can also be done with <strong>pure functions</strong>. In fact, some programming languages only allow pure functions. There is some evidence that programs that use pure functions are faster to develop and less error-prone than programs that use modifiers. But modifiers are convenient at times, and functional programs tend to be less efficient.</p>
+<p>In general, I recommend that you write pure functions whenever it is reasonable and resort to modifiers only if there is a compelling advantage. This approach might be called a <strong>functional programming style</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-03">
+<a class="anchor" href="#Exercise-03" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 03</em></strong><a class="anchor-link" href="#Exercise-03"> </a>
+</h3>
+<p>Write a "<strong>pure</strong>" version of <code>increment</code> that creates and returns a new Time object rather than modifying the parameter.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Prototyping-versus-planning">
+<a class="anchor" href="#Prototyping-versus-planning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prototyping versus planning<a class="anchor-link" href="#Prototyping-versus-planning"> </a>
+</h2>
+<p>The development plan above is called “<strong>prototype and patch</strong>”. For each function, we wrote a prototype that performed the basic calculation and then tested it, patching errors along the way.</p>
+<p>This approach can be effective, especially if you don’t yet have a deep understanding of the problem. But incremental corrections can generate code that is unnecessarily complicated—since it deals with many special cases—and unreliable—since it is hard to know if you have found all the errors.</p>
+<p>An alternative is <strong>designed development</strong>, in which high-level insight into the problem can make the programming much easier. In this case, the insight is that a Time object is really a three-digit number in base 60 (see <a href="http://en.wikipedia.org/wiki/Sexagesimal">http://en.wikipedia.org/wiki/Sexagesimal</a>.) The second attribute is the “ones column”, the minute attribute is the “sixties column”, and the hour attribute is the “thirty-six hundreds column”.</p>
+<p>When we wrote <code>add_time</code>, we were effectively doing addition in base 60, which is why we had to carry from one column to the next.</p>
+<p>This observation suggests another approach to the whole problem — we can convert Time objects to integers and take advantage of the fact that the computer knows how to do integer arithmetic.</p>
+<p>Here is a function that converts Times to integers:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">time_to_int</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+    <span class="n">minutes</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">hour</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">minute</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">second</span>
+    <span class="k">return</span> <span class="n">seconds</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And here is a function that converts an integer to a Time (recall that <code>divmod</code> divides the first argument by the second and returns the quotient and remainder as a tuple).</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">int_to_time</span><span class="p">(</span><span class="n">seconds</span><span class="p">):</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">()</span>
+    <span class="n">minutes</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">second</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">minute</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">minutes</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">time</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once you are convinced they are correct, you can use them to rewrite add_time:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">add_time_2</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="n">time_to_int</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span> <span class="o">+</span> <span class="n">time_to_int</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">int_to_time</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This version is shorter than the original, and easier to verify.</p>
+<p>It is also easier to add features later. For example, imagine subtracting two Times to find the duration between them. The naive approach would be to implement subtraction with borrowing. Using the conversion functions would be easier and more likely to be correct.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-4">
+<a class="anchor" href="#Exercise-4" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 4</em></strong><a class="anchor-link" href="#Exercise-4"> </a>
+</h3>
+<p>Write a function called <code>substract_time</code> that takes two Time objects returns find the duration between them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Error-handling">
+<a class="anchor" href="#Error-handling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Error handling<a class="anchor-link" href="#Error-handling"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">valid_time</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">time</span><span class="o">.</span><span class="n">minute</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">time</span><span class="o">.</span><span class="n">second</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">minute</span> <span class="o">&gt;=</span> <span class="mi">60</span> <span class="ow">or</span> <span class="n">time</span><span class="o">.</span><span class="n">second</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="k">def</span> <span class="nf">add_time_2</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid_time</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">valid_time</span><span class="p">(</span><span class="n">t2</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'invalid Time object in add_time'</span><span class="p">)</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="n">time_to_int</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span> <span class="o">+</span> <span class="n">time_to_int</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">int_to_time</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Or you could use an <strong>assert statement</strong>, which checks a given invariant and raises an exception if it fails:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">add_time</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">valid_time</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">valid_time</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="n">time_to_int</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span> <span class="o">+</span> <span class="n">time_to_int</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">int_to_time</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>assert</code> statements are useful because they distinguish code that deals with normal conditions from code that checks for errors.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-05">
+<a class="anchor" href="#Exercise-05" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 05</em></strong><a class="anchor-link" href="#Exercise-05"> </a>
+</h3>
+<p>Write a function called <code>mul_time</code> that takes a Time object and a number and returns a new Time object that contains the product of the original Time and the number.</p>
+<p>Then use <code>mul_time</code> to write a function that takes a Time object that represents the finishing time in a race, and a number that represents the distance, and returns a Time object that represents the average pace (time per mile).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-06">
+<a class="anchor" href="#Exercise-06" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 06</em></strong><a class="anchor-link" href="#Exercise-06"> </a>
+</h3>
+<p>The <code>datetime</code> module provides <code>time</code> objects that are similar to the Time objects in this chapter, but they provide a rich set of methods and operators. Read the documentation at <a href="http://docs.python.org/3/library/datetime.html">http://docs.python.org/3/library/datetime.html</a>.</p>
+<ol>
+<li>Use the <code>datetime</code> module to write a program that gets the current date and prints the day of the week.</li>
+<li>Write a program that takes a birthday as input and prints the user’s age and the number of days, hours, minutes and seconds until their next birthday.</li>
+<li>For two people born on different days, there is a day when one is twice as old as the other. That’s their Double Day. Write a program that takes two birthdays and computes their Double Day.</li>
+<li>For a little more challenge, write the more general version that computes the day when one person is n times older than the other. </li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="OIM3640/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/python/2021/09/20/16-oop-2.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An blogging platform to host Jupyter notebooks used for this class.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
