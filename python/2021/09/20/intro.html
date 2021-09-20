@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Introduction to Python Programming | OIM3640</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Introduction to Python Programming" />
+<meta name="author" content="Zhi Li" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Just a quick introduction" />
+<meta property="og:description" content="Just a quick introduction" />
+<link rel="canonical" href="https://oim3640.github.io/blog/python/2021/09/20/intro.html" />
+<meta property="og:url" content="https://oim3640.github.io/blog/python/2021/09/20/intro.html" />
+<meta property="og:site_name" content="OIM3640" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-20T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-09-20T00:00:00-05:00","url":"https://oim3640.github.io/blog/python/2021/09/20/intro.html","@type":"BlogPosting","headline":"Introduction to Python Programming","dateModified":"2021-09-20T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oim3640.github.io/blog/python/2021/09/20/intro.html"},"author":{"@type":"Person","name":"Zhi Li"},"description":"Just a quick introduction","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://oim3640.github.io/blog/feed.xml" title="OIM3640" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">OIM3640</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Introduction to Python Programming</h1><p class="page-description">Just a quick introduction</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-20T00:00:00-05:00" itemprop="datePublished">
+        Sep 20, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Zhi Li</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/OIM3640/blog/tree/master/_notebooks/2021-09-20-intro.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/OIM3640/blog/master?filepath=_notebooks%2F2021-09-20-intro.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/OIM3640/blog/blob/master/_notebooks/2021-09-20-intro.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduction-to-Python-Programming">Introduction to Python Programming </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#Extended-readings:">Extended readings: </a></li>
+<li class="toc-entry toc-h2"><a href="#What-is-a-program?">What is a program? </a></li>
+<li class="toc-entry toc-h2"><a href="#Why-Python?">Why Python? </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Why-Python-3?">Why Python 3? </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Python-Installation">Python Installation </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Python-interpretor">Python interpretor </a></li>
+<li class="toc-entry toc-h3"><a href="#Using-IDLE">Using IDLE </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Your-first-Python-program">Your first Python program </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Use-text-editor">Use text editor </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Arithmetic-operators">Arithmetic operators </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Exercise-01">Exercise 01 </a></li>
+<li class="toc-entry toc-h3"><a href="#Exercise-02">Exercise 02 </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-09-20-intro.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction-to-Python-Programming">
+<a class="anchor" href="#Introduction-to-Python-Programming" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction to Python Programming<a class="anchor-link" href="#Introduction-to-Python-Programming"> </a>
+</h1>
+<p><strong>Problem solving</strong> is one of the most important skills that everyone should learn and practice. The process of learning to program (especially using Python) is an excellent opportunity to practice problem-solving skills.</p>
+<h5 id="Extended-readings:">
+<a class="anchor" href="#Extended-readings:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extended readings:<a class="anchor-link" href="#Extended-readings:"> </a>
+</h5>
+<ul>
+<li>
+<a href="https://avc.com/2011/10/program-or-be-programmed/">https://avc.com/2011/10/program-or-be-programmed/</a><blockquote>
+<p>When human beings acquired language, we learned not just how to listen but how to speak. When we gained literacy, we learned not just how to read but how to write. And as we move into an increasingly digital reality, we must learn not just how to use programs but how to make them. In the emerging, highly programmed landscape ahead, you will either create the software or you will be the software. It's really that simple:Program, or be programmed.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="What-is-a-program?">
+<a class="anchor" href="#What-is-a-program?" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is a program?<a class="anchor-link" href="#What-is-a-program?"> </a>
+</h2>
+<p>A program is a sequence of instructions that specifies how to perform a computation. The computation might be something mathematical, such as solving a system of equations or finding the roots of a polynomial; it can also be a symbolic computation, such as searching and replacing text in a document or something graphical, like processing an image or playing a video.</p>
+<p><strong>Question</strong>: What are the basic elements of a program?</p>
+<h2 id="Why-Python?">
+<a class="anchor" href="#Why-Python?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why Python?<a class="anchor-link" href="#Why-Python?"> </a>
+</h2>
+<ul>
+<li>Python is a general-purpose, high-level programming language designed by Guido van Rossum.</li>
+<li>Python is really (yes, really) easy to learn.</li>
+<li>Lot of libraries: network, files, GUI, database...</li>
+<li>Python is simple and elegant.</li>
+</ul>
+<p><strong>Extended readings</strong>:</p>
+<ul>
+<li><a href="https://docs.python.org/3/tutorial/appetite.html">https://docs.python.org/3/tutorial/appetite.html</a></li>
+<li>The Zen of Python. <a href="https://www.python.org/dev/peps/pep-0020/">https://www.python.org/dev/peps/pep-0020/</a>
+</li>
+</ul>
+<h3 id="Why-Python-3?">
+<a class="anchor" href="#Why-Python-3?" aria-hidden="true"><span class="octicon octicon-link"></span></a><del>Why Python 3?</del><a class="anchor-link" href="#Why-Python-3?"> </a>
+</h3>
+<p><del>Short version: Python 2.x is legacy, Python 3.x is the present and future of the language.</del></p>
+<p><del>- <a href="https://www.python.org/doc/sunset-python-2/">https://www.python.org/doc/sunset-python-2/</a></del></p>
+<h2 id="Python-Installation">
+<a class="anchor" href="#Python-Installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python Installation<a class="anchor-link" href="#Python-Installation"> </a>
+</h2>
+<p>Go to <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>. Select the latest version of Python 3.9 (currently Python 3.9.7), click 'download'. <strong>Before clicking 'Install Now', check <b>'Add Python 3.9 to PATH'</b>.</strong></p>
+<h3 id="Python-interpretor">
+<a class="anchor" href="#Python-interpretor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python interpretor<a class="anchor-link" href="#Python-interpretor"> </a>
+</h3>
+<p>The Python interpreter is a program that reads and executes Python code. Depending on your environment, you might start the interpreter by clicking on an icon, or by typing 'python' on a command line. When it starts, you should see output like this:</p>
+<p><img src="/blog/images/copied_from_nb/nb_images/python_prompt.png" alt="Python Prompt"></p>
+<p>Check the version number.</p>
+<p>The last line is a prompt that indicates that the interpreter is ready for you to enter code. If you type a line of code and hit the Enter key, the interpreter displays the result:</p>
+<p><img src="/blog/images/copied_from_nb/nb_images/intro_2.png" alt="Code in prompt"></p>
+<p>Now you’re ready to get started.</p>
+<h3 id="Using-IDLE">
+<a class="anchor" href="#Using-IDLE" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using IDLE<a class="anchor-link" href="#Using-IDLE"> </a>
+</h3>
+<p>IDLE is the standard  Python development environment. Its name is an acronym of "Integrated DeveLopment Environment". It works well on both Unix and Windows platforms. It has a Python shell window, which gives you access to the Python interactive mode. It also has a file editor that lets you create and edit existing Python source files.</p>
+<h2 id="Your-first-Python-program">
+<a class="anchor" href="#Your-first-Python-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>Your first Python program<a class="anchor-link" href="#Your-first-Python-program"> </a>
+</h2>
+<p>Before starting this exciting journey, I want you to read the following sentences three times:</p>
+<p><strong>DO NOT copy/paste other people's code. Type it out!</strong></p>
+<p>Now, start Python interpreter or IDLE.</p>
+<p>Traditionally, the first program you write in a new language is called "Hello, World!" because all it does is display the words "Hello, World!". In Python, it looks like this:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Hello, World'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Congratulations! You just finished your first Python program!</p>
+<p>This is an example of a <code>print</code> statement, although it doesn’t actually print anything on paper. It displays a result on the screen.</p>
+<p>Q: What are the parentheses for? What about quotation marks?</p>
+<p>Let's try something else.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Oops, where is the code? How can I display "Hello, World!" again?</p>
+<h3 id="Use-text-editor">
+<a class="anchor" href="#Use-text-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use text editor<a class="anchor-link" href="#Use-text-editor"> </a>
+</h3>
+<p>You can use Notepad to write Python program. Remember to save the text file as .py file. I recommend <strong>Visual Studio Code</strong> as your default Python program editor.</p>
+<p><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<p>Why VS Code?</p>
+<ul>
+<li>Highlighting syntax. </li>
+<li>Built-in Git. You need a GitHub account. <a href="https://github.com/">https://github.com/</a>
+</li>
+<li>Running and debugging using Python extension. <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">https://marketplace.visualstudio.com/items?itemName=ms-python.python</a>
+</li>
+</ul>
+<p>Now, create a file <code>hello.py</code>. (<strong>Naming convention</strong>: modules (filenames) should have short, all-lowercase names, and they can contain underscores.)</p>
+<p>Type in the following code (don't forget to change to your first name):</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Hello, Zhi'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then execute this Python program in Command Prompt.</p>
+<p><img src="/blog/images/copied_from_nb/nb_images/run_hello.png" alt="run_hello"></p>
+<p>Cool! Greeting from your machine.</p>
+<p>However, if we create a file <em>calc.py</em> using the below code:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">39</span> <span class="o">+</span> <span class="mi">41</span> <span class="o">+</span> <span class="mi">33</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What do we get after executing this program?</p>
+<p><code>python calc.py</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nothing.</p>
+<p>We need to modify the code as below:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">39</span> <span class="o">+</span> <span class="mi">41</span> <span class="o">+</span> <span class="mi">33</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Re-run the file. I guess you get the correct result.</p>
+<h2 id="Arithmetic-operators">
+<a class="anchor" href="#Arithmetic-operators" aria-hidden="true"><span class="octicon octicon-link"></span></a>Arithmetic operators<a class="anchor-link" href="#Arithmetic-operators"> </a>
+</h2>
+<p>Try other operators: <code>-</code>,<code>*</code> and <code>/</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">2021</span> <span class="o">-</span> <span class="mi">2000</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">15</span> <span class="o">/</span> <span class="mi">3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Q. Why is the result <code>5.0</code> instead of <code>5</code>?</p>
+<p>Finally, the operator <code>**</code> performs exponentiation; that is, it raises a number to a power:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">2</span> <span class="o">**</span> <span class="mi">6</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-01">
+<a class="anchor" href="#Exercise-01" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 01</em></strong><a class="anchor-link" href="#Exercise-01"> </a>
+</h3>
+<p>Whenever you are experimenting with a new feature, you should try to make mistakes. For example, in the "Hello, world!" program, what happens if you leave out one of the quotation marks? What if you leave out both? What if you spell print wrong?</p>
+<ol>
+<li>In a print statement, what happens if you leave out one of the parentheses, or both?</li>
+<li>If you are trying to print a string, what happens if you leave out one of the quotation marks, or both?</li>
+<li>You can use a minus sign to make a negative number like <code>-2</code>. What happens if you put a plus sign before a number? What about <code>2++2</code>?</li>
+<li>In math notation, leading zeros are ok, as in <code>02</code>. What happens if you try this in Python?</li>
+<li>What happens if you have two values with no operator between them?</li>
+</ol>
+<h3 id="Exercise-02">
+<a class="anchor" href="#Exercise-02" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Exercise 02</em></strong><a class="anchor-link" href="#Exercise-02"> </a>
+</h3>
+<p>Rewrite <strong><em>calc.py</em></strong> to solve the following questions.</p>
+<ol>
+<li>How many seconds are there in 42 minutes 42 seconds?</li>
+<li>How many miles are there in 10 kilometers? Hint: there are 1.61 kilometers in a mile.</li>
+<li>If you run a 10 kilometer race in 42 minutes 42 seconds, what is your average pace (time per mile in minutes and seconds)? What is your average speed in miles per hour?</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="OIM3640/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/python/2021/09/20/intro.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
